@@ -7,28 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
-using System;
 
 namespace MvcMovie.Controllers
 {
     public class HelloWorldController : Controller
     {
-        //Location[,] grid = new Location[10, 20];
-
-        public IActionResult Index()
+        public ActionResult index()
         {
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 20; j++)
-                {
-                    //grid[i, j].setX(i);
-                    //grid[i, j].setY(j);
-                    //grid[i, j].setId(0);
-                }
-            }
-            //ViewData["Grid"] = grid;
-            return View();
+           Grid model = new Grid();
+            return View(model);
         }
+
 
         // GET: Movies/Edit/5
         public void Sel(int i, int j, int id)

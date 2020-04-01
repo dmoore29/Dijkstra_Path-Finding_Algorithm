@@ -3,13 +3,16 @@ namespace MvcMovie.Models
 {
     public class Location
     {
-        //public int XLoc { get; set; }
-        //public int YLoc { get; set; }
-        //public int Id { get; set; }
+        public int XLoc { get; set; }
+        public int YLoc { get; set; }
+        public int Id { get; set; }
 
-        private int XLoc;
-        private int YLoc;
-        private int Id;
+        public Location()
+        {
+            XLoc = 0;
+            YLoc = 0;
+            Id = 0;
+        }
 
         public void setX(int x)
         {

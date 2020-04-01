@@ -1,62 +1,78 @@
-﻿@model IEnumerable<MvcMovie.Models.Location>
+﻿@model MvcMovie.Models.Grid
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Pathfinding";
 }
 
-<style>
+    <style>
 
+        .gridZero:hover {
+            background-color: #a3eef7;
+            border: 2px solid #fff;
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
 
+        .gridZero {
+            background-color: #93ded7;
+            border: 2px solid #fff;
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
 
-    .grid:hover {
-        background-color: #a3eef7;
-        border: 2px solid #fff;
-        padding: 20px;
-        font-size: 30px;
-        text-align: center;
-    }
+        .gridOne {
+            background-color: red;
+            border: 2px solid #fff;
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
 
-    .grid {
-        background-color: #93ded7;
-        border: 2px solid #fff;
-        padding: 20px;
-        font-size: 30px;
-        text-align: center;
-    }
+        .gridTwo {
+            background-color: blue;
+            border: 2px solid #fff;
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
 
-    .tools {
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        background-color: #f0f7fb;
-        background-position: 9px 0px;
-        background-repeat: no-repeat;
-        border: solid 1px #3498db;
-        border-radius: 6px;
-        line-height: 18px;
-        overflow: hidden;
-        padding: 10px 40px;
-        cursor: pointer;
-        margin-left: 4px;
-        margin-right: 4px;
-        vertical-align: top;
-        display: inline-block;
-        *display: inline;
-    }
+        .tools {
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            background-color: #f0f7fb;
+            background-position: 9px 0px;
+            background-repeat: no-repeat;
+            border: solid 1px #3498db;
+            border-radius: 6px;
+            line-height: 18px;
+            overflow: hidden;
+            padding: 10px 40px;
+            cursor: pointer;
+            margin-left: 4px;
+            margin-right: 4px;
+            vertical-align: top;
+            display: inline-block;
+            *display: inline;
+        }
 
-    .contain {
-        height: 50px;
-        width: 840px;
-        text-align: justify;
-        -ms-text-justify: distribute-all-lines;
-        text-justify: distribute-all-lines;
-    }
+        .contain {
+            height: 50px;
+            width: 840px;
+            text-align: justify;
+            -ms-text-justify: distribute-all-lines;
+            text-justify: distribute-all-lines;
+        }
 
-    .stretch {
-        width: 80%;
-        display: inline-block;
-        font-size: 0;
-        line-height: 0
-    }
-</style>
+        .stretch {
+            width: 80%;
+            display: inline-block;
+            font-size: 0;
+            line-height: 0
+        }
+    </style>
+
 
 <h2>Pathfinding Algorithm Visualization</h2>
 
@@ -80,20 +96,33 @@
     <tbody>
         @for (int i = 0; i < 10; i++)
         {
-            <tr>
-                @for (int j = 0; j < 20; j++)
+        <tr>
+            @for (int j = 0; j < 20; j++)
+            {
+                switch (Model.getId(i, j))
                 {
-                <td class="grid" id="@i, @j" onclick="myFunction(@i, @j)">
-                </td>
+                    case 0:
+                        <td class="gridZero" id="@i, @j" onclick="myFunction(@i, @j)">
+                        </td>
+                        break;
+                    case 1:
+                        <td class="gridOne" id="@i, @j" onclick="myFunction(@i, @j)">
+                        </td>
+                        break;
+                    case 2:
+                        <td class="gridTwo" id="@i, @j" onclick="myFunction(@i, @j)">
+                        </td>
+                        break;
                 }
-            </tr>
+            }
+        </tr>
         }
     </tbody>
 </table>
 
 <script>
     function myFunction(i, j) {
-        //console.Log("hi");
-        console.log("Hi " + i + " " + j);
-    }
+                    //console.Log("hi");
+                    console.log("Hi " + i + " " + j);
+                }
 </script>
