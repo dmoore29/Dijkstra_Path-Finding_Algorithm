@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcMovie.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace MvcMovie
 {
@@ -69,8 +70,16 @@ namespace MvcMovie
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action}/{x?}/{y?}",
+                    defaults: new { controller = "Home", action = "Index" });
+
+                endpoints.MapGet("/test", async context =>
+                {
+                    await context.Response.WriteAsync("Hello World!");
+                });
             });
         }
+
+
     }
 }

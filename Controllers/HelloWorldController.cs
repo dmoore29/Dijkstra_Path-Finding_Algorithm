@@ -10,26 +10,55 @@ using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
+
     public class HelloWorldController : Controller
     {
-        public ActionResult index()
+
+        public ActionResult Index()
         {
-           Grid model = new Grid();
+            Location[,] g = new Location[10,20];
+
+            for (int i = 0; i < 10; i++)
+            {
+                int cId = i % 3;
+                Console.WriteLine("DIV CLASS: " + i % 3);
+                for (int j = 0; j < 20; j++)
+                {
+                    g[i, j] = new Location { Id = 0, XLoc = i, YLoc = j };
+                }
+            }
+
+            Grid model = new Grid {action = 0, cId = 0, grid = g};
+
             return View(model);
         }
 
-
-        // GET: Movies/Edit/5
-        public void Sel(int i, int j, int id)
+        public ActionResult setPath(int x, int y)
         {
-            if(id == 0)
-            {
-                //grid[i, j].setId(1);
-                Console.WriteLine("IT WORKED " + id);
-            }
-        }
-                            //<a asp-action="sel" asp-route-id="@i"></a>
+            Console.WriteLine("Set path, X: " + x + " Y: " + y);
+            Location[,] g = new Location[10, 20];
 
+            for (int i = 0; i < 10; i++)
+            {
+                int cId = i % 3;
+                Console.WriteLine("DIV CLASS: " + i % 3);
+                for (int j = 0; j < 20; j++)
+                {
+                    g[i, j] = new Location { Id = 0, XLoc = i, YLoc = j };
+                }
+            }
+
+            Grid model = new Grid { action = 0, cId = 0, grid = g };
+
+            model.grid[x, y].Id = 2;
+
+            return View("Index", model);
+        }
+
+        //public void testing()
+        //{
+        //    Console.WriteLine("Testing... ");
+        //}
 
         public IActionResult Welcome(string name, int numTimes = 1)
         {

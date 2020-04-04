@@ -3,36 +3,39 @@ namespace MvcMovie.Models
 {
     public class Grid
     {
-        private Location[,] grid;
-        private int cId = 0;
+        public Location[,] grid { set; get;}
+        public int cId { set; get; }
+        public int action { set; get; }
 
 
-        public Grid()
-        {
-            grid = new Location[10,20];
+        //public Grid()
+        //{
 
-            for (int i = 0; i < 10; i++)
-            {
-                cId = i % 3;
-                Console.WriteLine("DIV CLASS: " + i % 3);
-                for (int j = 0; j < 20; j++)
-                {
-                    grid[i, j] = new Location();
-                    grid[i,j].setX(i);
-                    grid[i,j].setY(j);
-                    grid[i,j].setId(cId);
-                }
-            }
-        }
+        //}
 
-        public Location[,] getGrid()
-        {
-            return grid;
-        }
+        //public Location[,] getGrid()
+        //{
+        //    return grid;
+        //}
 
-        public int getId(int i, int j)
-        {
-            return grid[i,j].getId();
-        }
+        //public int getId(int i, int j)
+        //{
+        //    return grid[i,j].getId();
+        //}
+
+        //public void update(int i, int j, int id)
+        //{
+        //    grid[i, j].setId(id);
+        //}
+
+        //public void setAction(int set)
+        //{
+        //    action = set;
+        //}
+
+        //public int getAction()
+        //{
+        //    return action;
+        //}
     }
 }

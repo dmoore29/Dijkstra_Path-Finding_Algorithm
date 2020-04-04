@@ -7,42 +7,42 @@ namespace MvcMovie.Models
         public int YLoc { get; set; }
         public int Id { get; set; }
 
-        public Location()
-        {
-            XLoc = 0;
-            YLoc = 0;
-            Id = 0;
-        }
+        //public Location()
+        //{
+        //    XLoc = 0;
+        //    YLoc = 0;
+        //    Id = 0;
+        //}
 
-        public void setX(int x)
-        {
-            XLoc = x;
-        }
+        //public void setX(int x)
+        //{
+        //    XLoc = x;
+        //}
 
-        public void setY(int y)
-        {
-            YLoc = y;
-        }
+        //public void setY(int y)
+        //{
+        //    YLoc = y;
+        //}
 
-        public void setId(int id)
-        {
-            Id = id;
-        }
+        //public void setId(int id)
+        //{
+        //    Id = id;
+        //}
 
-        public int getX()
-        {
-            return XLoc;
-        }
+        //public int getX()
+        //{
+        //    return XLoc;
+        //}
 
-        public int getY()
-        {
-            return YLoc;
-        }
+        //public int getY()
+        //{
+        //    return YLoc;
+        //}
 
-        public int getId()
-        {
-            return Id;
-        }
+        //public int getId()
+        //{
+        //    return Id;
+        //}
     }
 
 }
