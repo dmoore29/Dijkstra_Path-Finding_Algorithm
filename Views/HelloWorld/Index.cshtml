@@ -50,6 +50,14 @@
         text-align: center;
     }
 
+    .gridFour {
+        background-color: yellow;
+        border: 2px solid #fff;
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+
     .tools {
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
@@ -111,36 +119,40 @@
     <tbody>
         @for (int i = 0; i < 10; i++)
         {
-            <tr>
-                @for (int j = 0; j < 20; j++)
+        <tr>
+            @for (int j = 0; j < 20; j++)
+            {
+                @foreach (var f in Model.grid.locations)
                 {
-                    @foreach (var f in Model.grid.locations)
+                    if (f.XLoc == i && f.YLoc == j)
                     {
-                        if (f.XLoc == i && f.YLoc == j)
+                        switch (f.myD)
                         {
-                            switch (f.myD)
-                            {
-                                case 0:
-                                    <td class="gridZero" id="@i, @j" onclick="myFunction(@i, @j)">
-                                    </td>
-                                    break;
-                                case 1:
-                                    <td class="gridOne" id="@i, @j" onclick="myFunction(@i, @j)">
-                                    </td>
-                                    break;
-                                case 2:
-                                    <td class="gridTwo" id="@i, @j" onclick="myFunction(@i, @j)">
-                                    </td>
-                                    break;
-                                case 3:
-                                    <td class="gridThree" id="@i, @j" onclick="myFunction(@i, @j)">
-                                    </td>
-                                    break;
-                            }
+                            case 0:
+                                <td class="gridZero" id="@i, @j" onclick="myFunction(@i, @j)">
+                                </td>
+                                break;
+                            case 1:
+                                <td class="gridOne" id="@i, @j" onclick="myFunction(@i, @j)">
+                                </td>
+                                break;
+                            case 2:
+                                <td class="gridTwo" id="@i, @j" onclick="myFunction(@i, @j)">
+                                </td>
+                                break;
+                            case 3:
+                                <td class="gridThree" id="@i, @j" onclick="myFunction(@i, @j)">
+                                </td>
+                                break;
+                            case 4:
+                                <td class="gridFour" id="@i, @j" onclick="myFunction(@i, @j)">
+                                </td>
+                                break;
                         }
                     }
                 }
-            </tr>
+            }
+        </tr>
         }
 
     </tbody>

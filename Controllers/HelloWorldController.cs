@@ -48,6 +48,10 @@ namespace MvcMovie.Controllers
                 testL.Add(l);
             }
 
+            List<Location> updatedTestL = new List<Location>();
+            LocationGroup lg = new LocationGroup { locations = testL };
+            Grid model = new Grid { action = 0, cId = 0, grid = lg };
+
             var a = _context.G;
             foreach (var ac in a)
             {
@@ -64,34 +68,34 @@ namespace MvcMovie.Controllers
                 else if (x == 103 && y == 103)
                 {
                     ac.action = 0;
+                } else if(x == 104 && y == 104)
+                {
+                    AStar findPath = new AStar(testL);
+                    Console.WriteLine("CHECK B");
+                    updatedTestL = findPath.findPath();
+                    Console.WriteLine("CHECK G");
                 }
                 _context.SaveChanges();
-
                 act = ac.action;
             }
 
-            LocationGroup lg = new LocationGroup { locations = testL };
 
-            
+            if (x != 104) {
+                Location rip = new Location { XLoc = 0, YLoc = 0, myD = 0 };
 
-            Grid model = new Grid { action = 0, cId = 0, grid = lg };
-
-            List<Location> updatedTestL = new List<Location>();
-
-            Location rip = new Location { XLoc = 0, YLoc = 0, myD = 0 };
-
-            foreach (var l in model.grid.locations)
-            {
-                if(l.XLoc == x && l.YLoc == y)
+                foreach (var l in model.grid.locations)
                 {
-                    rip = new Location { XLoc = l.XLoc, YLoc = l.YLoc, myD = act};
-                    l.myD = act;
-                    _context.SaveChanges();
-                    updatedTestL.Add(rip);
-                }
-                else
-                {
-                    updatedTestL.Add(l);
+                    if (l.XLoc == x && l.YLoc == y)
+                    {
+                        rip = new Location { XLoc = l.XLoc, YLoc = l.YLoc, myD = act };
+                        l.myD = act;
+                        _context.SaveChanges();
+                        updatedTestL.Add(rip);
+                    }
+                    else
+                    {
+                        updatedTestL.Add(l);
+                    }
                 }
             }
 
