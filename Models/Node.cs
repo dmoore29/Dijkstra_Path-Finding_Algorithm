@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MvcMovie.Models
 {
-    public class Location
+    public class Node
     {
         public int XLoc { get; set; }
         public int YLoc { get; set; }
@@ -27,7 +27,7 @@ namespace MvcMovie.Models
 
         //public void setId(int id)
         //{
-        //    Id = id;A
+        //    Id = id;
         //}
 
         //public int getX()

@@ -9,6 +9,7 @@
 <style>
 
 
+
     .gridZero:hover {
         background-color: #a3eef7;
         border: 2px solid #fff;
@@ -26,7 +27,7 @@
     }
 
     .gridOne {
-        background-color: red;
+        background-color: green;
         border: 2px solid #fff;
         padding: 20px;
         font-size: 30px;
@@ -34,7 +35,15 @@
     }
 
     .gridTwo {
-        background-color: blue;
+        background-color: red;
+        border: 2px solid #fff;
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .gridThree {
+        background-color: black;
         border: 2px solid #fff;
         padding: 20px;
         font-size: 30px;
@@ -81,54 +90,66 @@
 
 <p>Select items to add to grid...</p>
 <div class=" contain">
-    <div class="tools">
+    <div class="tools" onclick="myFunction(100, 100)">
         Start
     </div>
 
-    <div class="tools">
+    <div class="tools" onclick="myFunction(101, 101)">
         End
     </div>
 
-    <div class="tools">
+    <div class="tools" onclick="myFunction(102, 102)">
         Wall
+    </div>
+    <div class="tools" onclick="myFunction(103, 103)">
+        Eraser
     </div>
     <span class="stretch"></span>
 </div>
 
-    <table>
-        <tbody>
-            @for (int i = 0; i < 10; i++)
-            {
+<table>
+    <tbody>
+        @for (int i = 0; i < 10; i++)
+        {
             <tr>
                 @for (int j = 0; j < 20; j++)
                 {
-                    @foreach (var f in Model.grid.locations) {
-                        if(f.XLoc == i && f.YLoc == j) {
+                    @foreach (var f in Model.grid.locations)
+                    {
+                        if (f.XLoc == i && f.YLoc == j)
+                        {
                             switch (f.myD)
                             {
                                 case 0:
-                                <td class="gridZero" id="@i, @j" onclick="myFunction(@i, @j, @Model.key)">
-                                </td>
+                                    <td class="gridZero" id="@i, @j" onclick="myFunction(@i, @j)">
+                                    </td>
                                     break;
                                 case 1:
-                                <td class="gridOne" id="@i, @j" onclick="myFunction(@i, @j)">
-                                </td>
+                                    <td class="gridOne" id="@i, @j" onclick="myFunction(@i, @j)">
+                                    </td>
                                     break;
                                 case 2:
-                                <td class="gridTwo" id="@i, @j" onclick="myFunction(@i, @j)">
-                                </td>
-                                        break;
-                                }
+                                    <td class="gridTwo" id="@i, @j" onclick="myFunction(@i, @j)">
+                                    </td>
+                                    break;
+                                case 3:
+                                    <td class="gridThree" id="@i, @j" onclick="myFunction(@i, @j)">
+                                    </td>
+                                    break;
                             }
                         }
                     }
+                }
             </tr>
-            }
-
-        </tbody>
-    </table>
-
-    <script>function myFunction(x, y) {
-            window.location.href = '/HelloWorld/setPath/' + x + '/' + y;
         }
-    </script>
+
+    </tbody>
+</table>
+
+<div class="tools" onclick="myFunction(104, 104)">
+    Visualize
+</div>
+
+<script>function myFunction(x, y) {
+        window.location.href = '/HelloWorld/setPath/' + x + '/' + y;
+    }</script>
