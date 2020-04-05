@@ -1,9 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace MvcMovie.Models
 {
     public class Grid
     {
-        public Location[,] grid { set; get;}
+        [Key]
+        public int key { set; get; }
+        public LocationGroup grid { set; get;}
         public int cId { set; get; }
         public int action { set; get; }
 

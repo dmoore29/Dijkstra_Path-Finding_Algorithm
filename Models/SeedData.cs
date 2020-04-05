@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace MvcMovie.Models
 {
@@ -15,43 +16,32 @@ namespace MvcMovie.Models
                     DbContextOptions<MvcMovieContext>>()))
             {
                 // Look for any movies.
-                if (context.Movie.Any())
+                if (context.G.Any())
                 {
                     return;   // DB has been seeded
                 }
 
-                context.Movie.AddRange(
-                    new Movie
-                    {
-                        Title = "When Harry Met Sally",
-                        ReleaseDate = DateTime.Parse("1989-2-12"),
-                        Genre = "Romantic Comedy",
-                        Price = 7.99M
-                    },
+                List<Location> locs = new List<Location>();
 
-                    new Movie
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine("DIV CLASS: " + i % 3);
+                    for (int j = 0; j < 20; j++)
                     {
-                        Title = "Ghostbusters ",
-                        ReleaseDate = DateTime.Parse("1984-3-13"),
-                        Genre = "Comedy",
-                        Price = 8.99M
-                    },
-
-                    new Movie
-                    {
-                        Title = "Ghostbusters 2",
-                        ReleaseDate = DateTime.Parse("1986-2-23"),
-                        Genre = "Comedy",
-                        Price = 9.99M
-                    },
-
-                    new Movie
-                    {
-                        Title = "Rio Bravo",
-                        ReleaseDate = DateTime.Parse("1959-4-15"),
-                        Genre = "Western",
-                        Price = 3.99M
+                        locs.Add(new Location { Id = 0, XLoc = i, YLoc = j, myD = 0 });
                     }
+                }
+
+                LocationGroup lg = new LocationGroup { locations = locs };
+
+                context.G.AddRange(
+
+
+                new Grid {
+                    action = 0,
+                    cId = 0,
+                    grid = lg
+                }
                 );
                 context.SaveChanges();
             }

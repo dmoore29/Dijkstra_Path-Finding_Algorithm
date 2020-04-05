@@ -9,13 +9,6 @@
 <style>
 
 
-
-
-
-
-
-
-
     .gridZero:hover {
         background-color: #a3eef7;
         border: 2px solid #fff;
@@ -106,26 +99,30 @@
         <tbody>
             @for (int i = 0; i < 10; i++)
             {
-                <tr>
-                    @for (int j = 0; j < 20; j++)
-                    {
-                        switch (Model.grid[i, j].Id)
-                        {
-                            case 0:
-                                <td class="gridZero" id="@i, @j" onclick="myFunction(@i, @j)">
+            <tr>
+                @for (int j = 0; j < 20; j++)
+                {
+                    @foreach (var f in Model.grid.locations) {
+                        if(f.XLoc == i && f.YLoc == j) {
+                            switch (f.myD)
+                            {
+                                case 0:
+                                <td class="gridZero" id="@i, @j" onclick="myFunction(@i, @j, @Model.key)">
                                 </td>
-                                break;
-                            case 1:
+                                    break;
+                                case 1:
                                 <td class="gridOne" id="@i, @j" onclick="myFunction(@i, @j)">
                                 </td>
-                                break;
-                            case 2:
+                                    break;
+                                case 2:
                                 <td class="gridTwo" id="@i, @j" onclick="myFunction(@i, @j)">
                                 </td>
-                                break;
+                                        break;
+                                }
+                            }
                         }
                     }
-                </tr>
+            </tr>
             }
 
         </tbody>

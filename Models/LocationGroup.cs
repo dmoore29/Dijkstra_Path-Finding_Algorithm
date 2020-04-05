@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace MvcMovie.Models
 {
-    public class Location
+    public class LocationGroup
     {
-        public int XLoc { get; set; }
-        public int YLoc { get; set; }
-        public int Id { get; set; }
-        public int myD { get; set; }
+        public int Id { set; get; }
+        public List<Location> locations { set; get; }
 
         //public Location()
         //{

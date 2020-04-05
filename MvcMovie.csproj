@@ -27,4 +27,11 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\MvcMovieContext %28copy%29.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="MvcMovie.db" />
+    <None Remove="MvcMovie.db-shm" />
+  </ItemGroup>
 </Project>

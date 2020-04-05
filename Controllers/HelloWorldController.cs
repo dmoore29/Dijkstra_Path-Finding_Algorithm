@@ -13,22 +13,24 @@ namespace MvcMovie.Controllers
 
     public class HelloWorldController : Controller
     {
+        private readonly MvcMovieContext _context;
 
+        public HelloWorldController(MvcMovieContext context)
+        {
+            _context = context;
+        }
+
+        //public async Task<IActionResult> Index()
         public ActionResult Index()
         {
-            Location[,] g = new Location[10,20];
-
-            for (int i = 0; i < 10; i++)
+            List<Location> testL = new List<Location>();
+            foreach (var l in _context.Location)
             {
-                int cId = i % 3;
-                Console.WriteLine("DIV CLASS: " + i % 3);
-                for (int j = 0; j < 20; j++)
-                {
-                    g[i, j] = new Location { Id = 0, XLoc = i, YLoc = j };
-                }
+                testL.Add(l);
             }
 
-            Grid model = new Grid {action = 0, cId = 0, grid = g};
+            LocationGroup lg = new LocationGroup { locations = testL };
+            Grid model = new Grid { action = 0, cId = 0, grid = lg };
 
             return View(model);
         }
@@ -36,22 +38,29 @@ namespace MvcMovie.Controllers
         public ActionResult setPath(int x, int y)
         {
             Console.WriteLine("Set path, X: " + x + " Y: " + y);
-            Location[,] g = new Location[10, 20];
-
-            for (int i = 0; i < 10; i++)
+            List<Location> testL = new List<Location>();
+            foreach (var l in _context.Location)
             {
-                int cId = i % 3;
-                Console.WriteLine("DIV CLASS: " + i % 3);
-                for (int j = 0; j < 20; j++)
+                testL.Add(l);
+            }
+
+            LocationGroup lg = new LocationGroup { locations = testL };
+            Grid model = new Grid { action = 0, cId = 0, grid = lg };
+
+            List<Location> updatedTestL = new List<Location>();
+
+            foreach (var l in model.grid.locations)
+            {
+                if(l.XLoc == x && l.YLoc == y)
                 {
-                    g[i, j] = new Location { Id = 0, XLoc = i, YLoc = j };
+                    updatedTestL.Add(new Location { XLoc = l.XLoc, YLoc = l.YLoc, myD = 2 });
+                } else
+                {
+                    updatedTestL.Add(l);
                 }
             }
 
-            Grid model = new Grid { action = 0, cId = 0, grid = g };
-
-            model.grid[x, y].Id = 2;
-
+            model.grid.locations = updatedTestL;
             return View("Index", model);
         }
 
